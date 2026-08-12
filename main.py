@@ -4,9 +4,10 @@ import random
 import string
 
 # ==========================================
-# 1. BOT TOKEN 8656530199:AAFHtfUoYUdU7NCSOXIx-GZNz5kC7UC8NAk
+# BOT TOKEN KEE BAKKA KANA IRRATTI GALCHI
 # ==========================================
 BOT_TOKEN = "8656530199:AAFHtfUoYUdU7NCSOXIx-GZNz5kC7UC8NAk"
+
 bot = telebot.TeleBot(BOT_TOKEN)
 
 # Main Menu (Reply Keyboard)
@@ -17,7 +18,7 @@ def main_keyboard():
     markup.row("⚙️ Settings", "❓ Help")
     return markup
 
-# Credentials Generator (Maqaa fi Email Tasumaa Uumuu)
+# Credentials Generator
 def generate_credentials():
     first_names = ["Moises", "John", "David", "Michael", "Alex", "James", "Robert"]
     last_names = ["Smith", "Johnson", "Brown", "Williams", "Miller", "Davis"]
@@ -35,7 +36,7 @@ def generate_credentials():
 def send_welcome(message):
     welcome_text = (
         "Register Gmail accounts and get paid for it.\n\n"
-        "For each account you will receive: from 0.15$ to 0.23$\n\n"
+        "For each account you will receive: from **0.15$ to 0.23$**\n\n"
         "Everything is very simple. The bot provides you with data for registering a Gmail account, "
         "you copy it and go to Google. Create a Gmail account there, then return to the bot"
     )
@@ -46,12 +47,12 @@ def send_welcome(message):
 def handle_register(message):
     fn, ln, email, pwd, year = generate_credentials()
     task_text = (
-        "Register Gmail account using the specified data and get from 0.15$ to 0.23$\n\n"
-        f"First name: {fn}\n"
-        f"Last name: {ln}\n"
-        f"Email: {email}\n"
-        f"Password: {pwd}\n"
-        f"Year of birth: {year}\n\n"
+        "Register Gmail account using the specified data and get from **0.15$ to 0.23$**\n\n"
+        f"First name: **{fn}**\n"
+        f"Last name: **{ln}**\n"
+        f"Email: `{email}`\n"
+        f"Password: `{pwd}`\n"
+        f"Year of birth: **{year}**\n\n"
         "🔒 Be sure to use the specified data, otherwise the account will not be paid."
     )
     inline = InlineKeyboardMarkup()
@@ -63,7 +64,7 @@ def handle_register(message):
 # Balance Handler
 @bot.message_handler(func=lambda message: message.text == "💰 Balance")
 def handle_balance(message):
-    bal_text = "Balance: 0$\nHold: 0$"
+    bal_text = "Balance: **0$**\nHold: **0$**"
     inline = InlineKeyboardMarkup()
     inline.row(
         InlineKeyboardButton("💳 Payout", callback_data="payout"),
@@ -84,7 +85,8 @@ def handle_accounts(message):
 
 # Settings Handler
 @bot.message_handler(func=lambda message: message.text == "⚙️ Settings")
-def handle_settings(message):inline = InlineKeyboardMarkup()
+def handle_settings(message):
+    inline = InlineKeyboardMarkup()
     inline.add(InlineKeyboardButton("🔕 Disable balance notifications", callback_data="no_notif"))
     inline.row(
         InlineKeyboardButton("🔙 Back", callback_data="back_main"),
@@ -109,10 +111,10 @@ def handle_referrals(message):
     bot_info = bot.get_me()
     ref_link = f"https://t.me/{bot_info.username}?start={message.from_user.id}"
     ref_text = (
-        "👨‍👩‍👧‍👦 Total referrals: 0\n\n"
+        "👨‍👩‍👧‍👦 Total referrals: **0**\n\n"
         "In the first month:\n"
-        "• 2fa 0.015$\n"
-        "• 2fa 0.013$\n\n"
+        "• 2fa **0.015$**\n"
+        "• 2fa **0.013$**\n\n"
         f"🔗 Your referral link:\n{ref_link}"
     )
     bot.send_message(message.chat.id, ref_text, parse_mode="Markdown")
